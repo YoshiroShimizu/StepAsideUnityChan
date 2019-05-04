@@ -33,15 +33,17 @@ public class ItemGenerator : MonoBehaviour {
         this.lastposition = this.unitychan.transform.position.z;
 
 
+
     }
 	
 	// Update is called once per frame
 	void Update () {
+        
         this.unitychanoffsetZ = this.unitychan.transform.position.z + itemdifference;
 
 
         //一定の距離ごとにアイテムを生成
-        if(this.unitychan.transform.position.z-this.lastposition>10 && this.goalPos> this.unitychanoffsetZ)
+        if(this.unitychan.transform.position.z-this.lastposition>15 && this.goalPos> this.unitychanoffsetZ)
         {
             //どのアイテムを出すのかをランダムに設定
             int num = Random.Range(1, 11);
@@ -55,8 +57,9 @@ public class ItemGenerator : MonoBehaviour {
                     GameObject cone = Instantiate(cornPrefab) as GameObject;
 
                     cone.transform.position = new Vector3(4 * j, cone.transform.position.y, this.unitychanoffsetZ);
-                    this.lastposition += 10;
+                    
                 }
+                this.lastposition += 15;
             }
             else
             {
@@ -74,17 +77,19 @@ public class ItemGenerator : MonoBehaviour {
                         //コインを生成
                         GameObject coin = Instantiate(coinPrefab) as GameObject;
                         coin.transform.position = new Vector3(posRange * j, coin.transform.position.y, this.unitychanoffsetZ + offsetZ);
-                        this.lastposition += 10;
+                        
                     }
+                    
                     else if (7 <= item && item <= 9)
                     {
                         //車を生成
                         GameObject car = Instantiate(carPrefab) as GameObject;
                         car.transform.position = new Vector3(posRange * j, car.transform.position.y, this.unitychanoffsetZ + offsetZ);
-                        this.lastposition += 10;
+                       
 
                     }
                 }
+                this.lastposition += 15;
             }
         }
     }
